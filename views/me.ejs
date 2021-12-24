@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ME</title>
+</head>
+
+<body>
+    This is where the particular user info will be displayed <br>
+    <button id="groupButton"> Get the channels </button>
+    <!-- <a id="groupButton" href="/groups"> Get the channles</a> -->
+    <script>
+        document.getElementById('groupButton').addEventListener('click', sendReq)
+
+        function sendReq(e) {
+            let jwtToken = document.cookie
+            console.log(jwtToken)
+            jwtToken = jwtToken.split("=")
+            const token = jwtToken[1]
+
+            let url = "http://localhost:5000/groups/";
+            let h = new Headers()
+            h.append('Authentication', `Bearer ${token}`)
+            let req = new Request(url, {
+                method: 'GET',
+                redirect: 'follow',
+                mode: 'cors',
+                headers: h
+
+            })
+            fetch(req)
+                .then(resp => console.log(resp))
+                .then(groups => console.log(groups))
+                .catch(err => console.log(err.message))
+        }
+
+    </script>
+</body>
+
+</html>
