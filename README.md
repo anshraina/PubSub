@@ -9,7 +9,7 @@
 - Express
 
 ### Front End
-- EJB (A templating engine)
+- EJS (A templating engine)
 - Bootstrap
 ### Database
 - Mongo DB 
